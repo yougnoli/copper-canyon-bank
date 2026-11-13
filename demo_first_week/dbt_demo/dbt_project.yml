@@ -1,0 +1,8 @@
+name: demo_first_week
+version: "0.1"
+profile: demo_first_week
+model-paths: ["models"]
+models:
+  demo_first_week:
+    # a table: dbt builds it again from scratch every time it runs (it replaces the old one)
+    +materialized: table

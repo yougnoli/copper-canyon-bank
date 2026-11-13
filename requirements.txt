@@ -1,0 +1,10 @@
+# The tools of the lab, pinned (the same versions the editor and Dagster use).
+dagster==1.13.29
+dagster-webserver==1.13.29
+dagster-dbt==0.29.29
+dbt-core==1.10.23
+dbt-postgres==1.10.2
+dlt[postgres]==1.32.0
+psycopg2-binary
+psycopg[binary]==3.3.8
+sqlfluff==4.5.0

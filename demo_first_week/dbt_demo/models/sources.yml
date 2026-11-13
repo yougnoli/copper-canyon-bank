@@ -1,0 +1,7 @@
+version: 2
+sources:
+  # what the loader (ingestion.py) writes
+  - name: loaded
+    schema: raw_dev
+    tables:
+      - name: demo_accounts

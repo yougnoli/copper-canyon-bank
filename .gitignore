@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+.dagster/
+dbt_project/.user.yml
+demo_first_week/dbt_demo/target/
+demo_first_week/dbt_demo/logs/
+demo_first_week/dbt_demo/dbt_packages/
+demo_first_week/dbt_demo/.user.yml
+.dlt/

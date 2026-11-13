@@ -1,0 +1,26 @@
+# Runs on every pull request: the style of the SQL, and whether dbt can read the project.
+# It does not run the models (no database here) and it does not run the tests.
+name: CI
+on:
+  pull_request:
+    branches: [dev, main]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      CCB_DB_HOST: localhost
+      CCB_DB_PORT: "5432"
+      CCB_DB_NAME: ci
+      CCB_DB_USER: ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install dbt-core==1.10.23 dbt-postgres==1.10.2 sqlfluff==4.5.0
+      - name: A throw-away password for dbt parse (it never connects to anything)
+        run: echo "CCB_DB_PASSWORD=$(openssl rand -hex 12)" >> "$GITHUB_ENV"
+      - name: Style of the SQL
+        run: sqlfluff lint dbt_project/models
+      - name: dbt can read the project
+        run: dbt parse --project-dir dbt_project --profiles-dir dbt_project

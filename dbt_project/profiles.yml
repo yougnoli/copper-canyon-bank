@@ -1,0 +1,22 @@
+# Connection to the warehouse. dev is the contractor's workstation login; prod reads the server's environment.
+copper_canyon:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('CCB_DB_HOST') }}"
+      port: "{{ env_var('CCB_DB_PORT') | as_number }}"
+      user: "{{ env_var('CCB_DB_USER') }}"
+      password: "Ccb-Wh-2019!"
+      dbname: "{{ env_var('CCB_DB_NAME') }}"
+      schema: dev
+      threads: 2
+    prod:
+      type: postgres
+      host: "{{ env_var('CCB_DB_HOST') }}"
+      port: "{{ env_var('CCB_DB_PORT') | as_number }}"
+      user: "{{ env_var('CCB_DB_USER') }}"
+      password: "{{ env_var('CCB_DB_PASSWORD') }}"
+      dbname: "{{ env_var('CCB_DB_NAME') }}"
+      schema: prod
+      threads: 2

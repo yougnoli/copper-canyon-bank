@@ -1,0 +1,13 @@
+# How dbt connects to the training database. Nothing secret is written here: the login comes from the environment.
+demo_first_week:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('CCB_DB_HOST') }}"
+      port: "{{ env_var('CCB_DB_PORT') | as_number }}"
+      user: "{{ env_var('CCB_DB_USER') }}"
+      password: "{{ env_var('CCB_DB_PASSWORD') }}"
+      dbname: "{{ env_var('CCB_DEMO_DB_NAME') }}"
+      schema: dev
+      threads: 1

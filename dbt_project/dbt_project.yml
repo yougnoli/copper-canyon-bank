@@ -1,0 +1,10 @@
+name: copper_canyon
+version: "0.1"
+profile: copper_canyon
+model-paths: ["models"]
+models:
+  copper_canyon:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

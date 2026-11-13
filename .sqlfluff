@@ -1,0 +1,28 @@
+[sqlfluff]
+dialect = postgres
+templater = jinja
+exclude_rules = LT05, AM04, ST06
+
+[sqlfluff:templater:jinja:context]
+target = {"name": "dev"}
+
+# sqlfluff reads the Jinja itself, not through dbt: a dbt function it does not know must be described here.
+[sqlfluff:templater:jinja:macros]
+load_relation = {% macro load_relation(relation) %}{{ relation }}{% endmacro %}
+
+# A model may hold an {% if %} around a whole select: its lines stay at the margin.
+[sqlfluff:indentation]
+template_blocks_indent = False
+
+# "rule" is the name of a column the compliance officer reads.
+[sqlfluff:rules:references.keywords]
+ignore_words = rule
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = lower

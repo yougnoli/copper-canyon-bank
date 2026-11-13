@@ -1,0 +1,13 @@
+version: 2
+sources:
+  # the bulk load of the last 365 days, made once by the previous contractor
+  - name: history
+    schema: raw
+    tables:
+      - name: card_transactions_hist
+  # what the pipeline in dagster_project/ingestion.py loads (the card files and the card list)
+  - name: loaded
+    schema: "{{ 'raw' if target.name == 'prod' else 'raw_dev' }}"
+    tables:
+      - name: card_transactions
+      - name: core_cards
