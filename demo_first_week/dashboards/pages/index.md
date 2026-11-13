@@ -1,3 +1,9 @@
-# Training week
+# Accounts of the training branch
 
-This page is empty. On day 5 (CCB-10) you build the dashboard here: a title and a table.
+```sql accounts
+select account_id, holder_name, city, balance, balance_band
+from dev.demo_accounts_clean
+order by account_id
+```
+
+{% table data="accounts" /%}
